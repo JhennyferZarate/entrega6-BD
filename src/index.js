@@ -6,7 +6,7 @@ import { DATE_UTILS } from "./utils/index.js";
 import { Server as HttpServer } from "http";
 import { Server as IOServer } from "socket.io";
 
-const MessagesApi = new memoryContainer();
+const MessagesApi = new memoryContainer("messages");
 const ProductsApi = new productsContainer("products");
 
 //create express app, http server and socket server
@@ -19,13 +19,13 @@ app.use(express.static("public"));
 io.on("connection", async (socket) => {
     console.log(`Nuevo cliente conectado ${socket.id}`);
   
-    socket.emit("messages", MessagesApi.getAll());
+    socket.emit("messages", await MessagesApi.getAll());
   
     socket.on("newMessage", ({ email, text }) => {
       const message = { email, text, timestamp: DATE_UTILS.getTimestamp() };
       MessagesApi.save(message);
-  
-      io.sockets.emit("messages", MessagesApi.getAll());
+
+      io.sockets.emit("messages", message);
     });
   
     socket.emit("products", await ProductsApi.getAll());

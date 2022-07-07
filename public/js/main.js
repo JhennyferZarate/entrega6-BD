@@ -18,7 +18,7 @@ socket.on("messages", (messages) => {
   let messagesHtml = messages
     .map(
       (message) =>
-        `<span>${message.timestamp}<b> ${message.email}: </b>${message.text}</span>`
+        `<span><b>${message.email}</b> [${message.timestamp}] : ${message.text}</span>`
     )
     .join("<br>");
 

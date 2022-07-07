@@ -1,29 +1,47 @@
+import fs from "fs";
+
 class memoryContainer {
-    constructor() {
-      this.elements = [];
+
+    constructor(filename) {
+        this.path = `./src/db/json/${filename}.json`;
+    }
+
+    async getAll() {
+        try {
+          const file = await fs.promises.readFile(this.path);
+          return JSON.parse(file);
+        } catch (error) {
+          await fs.promises.writeFile(this.path, JSON.stringify([]));
+          return [];
+        }
+    }
+
+    async getById(id) {
+        try{
+            const elements = await this.getAll();
+            const element = elements.find((e) => e.id == id);
+            return element;
+        }catch (error){
+            return error;
+        } 
+    }
+
+    async save(element) {
+        try{
+            const elements = await this.getAll();
+            element.id =
+               elements.length === 0
+                    ? 1
+                    : elements[elements.length - 1].id + 1;
+            elements.push(element);
+            await fs.promises.writeFile(this.path, JSON.stringify(elements, null, 2));
+            return elements;
+        }catch(error){
+            return error;
+        } 
     }
   
-    getAll() {
-      return this.elements;
-    }
-  
-    getById(id) {
-      const element = this.elements.find((e) => e.id == id);
-  
-      return element;
-    }
-  
-    save(element) {
-      element.id =
-        this.elements.length === 0
-          ? 1
-          : this.elements[this.elements.length - 1].id + 1;
-  
-      this.elements.push(element);
-  
-      return element;
-    }
-  
+    /*
     updateById(id, newData) {
       const elementIndex = this.elements.findIndex((e) => e.id == id);
   
@@ -46,6 +64,7 @@ class memoryContainer {
   
       return { error: false };
     }
+    */
   }
   
   export { memoryContainer }; // type module
