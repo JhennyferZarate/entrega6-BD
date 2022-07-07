@@ -41,31 +41,7 @@ class memoryContainer {
         } 
     }
   
-    /*
-    updateById(id, newData) {
-      const elementIndex = this.elements.findIndex((e) => e.id == id);
-  
-      if (elementIndex === -1) return { error: true };
-  
-      this.elements[elementIndex] = {
-        ...this.elements[elementIndex],
-        ...newData,
-      };
-  
-      return this.elements[elementIndex];
-    }
-  
-    deleteById(id) {
-      const elementIndex = this.elements.findIndex((e) => e.id == id);
-  
-      if (elementIndex === -1) return { error: true };
-  
-      this.elements = this.elements.filter((e) => e.id != id);
-  
-      return { error: false };
-    }
-    */
-  }
+}
   
   export { memoryContainer }; // type module
   
