@@ -1,0 +1,27 @@
+.card{
+    margin-top: 1.5vh;
+    margin-left: 4vh;
+    margin-right: 4vh;
+    background-color: rgb(233, 250, 255);
+    padding: 2vh;
+}
+
+form,h1,h2{
+    margin-top: 1vh;
+    margin-left: 3vh;
+    margin-right: 3vh;
+}
+
+#messagesList{
+    margin: 2rem;
+}
+
+.card-body {
+    margin-left: 3vh;
+    margin-right: 3vh;
+    background-color: rgb(255, 255, 255);
+}
+
+#products-card{
+    margin-bottom: 4vh;
+}
