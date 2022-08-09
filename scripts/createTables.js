@@ -28,7 +28,8 @@ try{
     await sqlite3Client.schema.createTable('messages', table => {
         table.increments('id').primary();
         table.string('email', 50).notNullable();
-        table.string('text', 500).notNullable(); 
+        table.string('text', 500).notNullable();
+        table.dateTime('timestamp').notNullable();
     })
 
     await sqlite3Client.destroy();
