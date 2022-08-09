@@ -1,7 +1,7 @@
 //call all the required packages
 import express from "express";
-import sqlcontainer from "./containers/sqlcontainer.js";
-import config from "./config.js";
+import { sqlcontainer } from "./containers/sqlcontainer.js";
+import { config } from "./config.js";
 import { DATE_UTILS } from "./utils/index.js";
 
 import { Server as HttpServer } from "http";
